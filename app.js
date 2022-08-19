@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/myBlogDb");
+mongoose.connect("mongodb+srv://admin-purohit:test123purohit@cluster1.uaqdtvw.mongodb.net/myBlogDb");
 const postSchema = {
   title : String,
   body : String
@@ -62,6 +62,11 @@ app.post("/compose", function(req,res){
   });
 })
 
-app.listen(6500, function() {
-  console.log("Server started on port 6500");
+let port = process.env.PORT;
+if(port == null || port ==""){
+    port = 7500;
+}
+
+app.listen(port, function(){
+    console.log("Server has started successfully.");
 });
